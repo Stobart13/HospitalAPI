@@ -1,0 +1,6 @@
+C:\Users\stuar\source\repos\HospitalAPI\HospitalAPI\obj\Debug\netcoreapp2.1\HospitalAPI.csprojAssemblyReference.cache
+C:\Users\stuar\source\repos\HospitalAPI\HospitalAPI\obj\Debug\netcoreapp2.1\HospitalAPI.csproj.CoreCompileInputs.cache
+C:\Users\stuar\source\repos\HospitalAPI\HospitalAPI\obj\Debug\netcoreapp2.1\HospitalAPI.RazorAssemblyInfo.cache
+C:\Users\stuar\source\repos\HospitalAPI\HospitalAPI\obj\Debug\netcoreapp2.1\HospitalAPI.RazorAssemblyInfo.cs
+C:\Users\stuar\source\repos\HospitalAPI\HospitalAPI\obj\Debug\netcoreapp2.1\HospitalAPI.AssemblyInfoInputs.cache
+C:\Users\stuar\source\repos\HospitalAPI\HospitalAPI\obj\Debug\netcoreapp2.1\HospitalAPI.AssemblyInfo.cs

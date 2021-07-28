@@ -1,0 +1,427 @@
+{
+	"info": {
+		"_postman_id": "e9c1e6f8-55c2-45b3-968e-77543ec2a274",
+		"name": "Hospital Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ListActivePatientsByWard",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Check is returning Active Patients\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    var length = jsonData.length;\r",
+							"    for(let i = 0; i < length; i++){\r",
+							"    pm.expect(jsonData[i].isAdmitted).to.eql(true);\r",
+							"    console.log(jsonData[i]);\r",
+							"    }\r",
+							"});\r",
+							"pm.test(\"Check is not returning inactive Patients\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    var length = jsonData.length;\r",
+							"    for(let i = 0; i < length; i++){\r",
+							"    pm.expect(jsonData[i].isAdmitted).to.eql(false);\r",
+							"    console.log(jsonData[i]);\r",
+							"    }\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check is returning patients from correct ward\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    var length = jsonData.length;\r",
+							"    for(let i = 0; i < length; i++){\r",
+							"    pm.expect(jsonData[i].wardID).to.eql(2);\r",
+							"    console.log(jsonData[i]);\r",
+							"    }\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check is not returning patients from incorrect ward\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    var length = jsonData.length;\r",
+							"    for(let i = 0; i < length; i++){\r",
+							"    pm.expect(jsonData[i].wardID).to.eql(1);\r",
+							"    console.log(jsonData[i]);\r",
+							"    }\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44342/api/Hospital/ListActivePatientsByWard?WardID=2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44342",
+					"path": [
+						"api",
+						"Hospital",
+						"ListActivePatientsByWard"
+					],
+					"query": [
+						{
+							"key": "WardID",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ListActivePatients",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Check is returning Active Patients\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    var length = jsonData.length;\r",
+							"    for(let i = 0; i < length; i++){\r",
+							"    pm.expect(jsonData[i].isAdmitted).to.eql(true);\r",
+							"    console.log(jsonData[i]);\r",
+							"    }\r",
+							"});\r",
+							"pm.test(\"Check is not returning inactive Patients\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    var length = jsonData.length;\r",
+							"    for(let i = 0; i < length; i++){\r",
+							"    pm.expect(jsonData[i].isAdmitted).to.eql(false);\r",
+							"    console.log(jsonData[i]);\r",
+							"    }\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44342/api/Hospital/ListActivePatients",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44342",
+					"path": [
+						"api",
+						"Hospital",
+						"ListActivePatients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddPatient",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Name\": \"Add Test User\",\r\n    \"Gender\": \"F\",\r\n    \"DateOfBirth\": \"1999-10-15\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44342/api/hospital/AddPatient",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44342",
+					"path": [
+						"api",
+						"hospital",
+						"AddPatient"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DoesPatientExistTrue",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Patient Does Exist\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.eql(true);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44342/api/hospital/DoesPatientExist?Name=Jane Doe&DateOfBirth=1992-04-24 00:00:00.000",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44342",
+					"path": [
+						"api",
+						"hospital",
+						"DoesPatientExist"
+					],
+					"query": [
+						{
+							"key": "Name",
+							"value": "Jane Doe"
+						},
+						{
+							"key": "DateOfBirth",
+							"value": "1992-04-24 00:00:00.000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DoesPatientExistFalse",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Patient Does Exist - Fail\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.eql(true);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Patient Does Not Exist\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.eql(false);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44342/api/hospital/DoesPatientExist?Name=FakeName&DateOfBirth=1992-04-24 00:00:00.000",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44342",
+					"path": [
+						"api",
+						"hospital",
+						"DoesPatientExist"
+					],
+					"query": [
+						{
+							"key": "Name",
+							"value": "FakeName"
+						},
+						{
+							"key": "DateOfBirth",
+							"value": "1992-04-24 00:00:00.000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "IsPatientAdmittedTrue",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check Patient Admitted returns true\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.eql(true);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check Admitted Patient does not return false\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.eql(false);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44342/api/Hospital/IsPatientAdmitted?PatientID=0C8C25CE-845C-41D5-B114-F03EB722BAEB",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44342",
+					"path": [
+						"api",
+						"Hospital",
+						"IsPatientAdmitted"
+					],
+					"query": [
+						{
+							"key": "PatientID",
+							"value": "0C8C25CE-845C-41D5-B114-F03EB722BAEB"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "IsPatientAdmittedFalse",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check Patient not Admitted returns false\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.eql(false);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check not Admitted Patient does not return true\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.eql(true);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44342/api/Hospital/IsPatientAdmitted?PatientID=8AD70568-6249-4A63-8702-83BC3105867D",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44342",
+					"path": [
+						"api",
+						"Hospital",
+						"IsPatientAdmitted"
+					],
+					"query": [
+						{
+							"key": "PatientID",
+							"value": "8AD70568-6249-4A63-8702-83BC3105867D"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdatePatient",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"PatientID\": \"5B9BE2D0-5261-4438-9C6A-778847050B5D\",\r\n    \"Name\": \"Update EndPoint Test\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44342/api/hospital/UpdatePatient",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44342",
+					"path": [
+						"api",
+						"hospital",
+						"UpdatePatient"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AdmitPatient",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"PatientID\": \"F76DFA05-F316-4B5C-AE45-D3BC8C560EC0\",\r\n    \"WardID\": 3,\r\n    \"Notes\":  \"Testing Admit Endpoint\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44342/api/hospital/AdmitPatient",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44342",
+					"path": [
+						"api",
+						"hospital",
+						"AdmitPatient"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
