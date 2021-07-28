@@ -46,3 +46,4 @@ C:\Users\stuar\source\repos\HospitalAPI\HospitalAPI\obj\Debug\net5.0\HospitalAPI
 C:\Users\stuar\source\repos\HospitalAPI\HospitalAPI\obj\Debug\net5.0\ref\HospitalAPI.dll
 C:\Users\stuar\source\repos\HospitalAPI\HospitalAPI\obj\Debug\net5.0\HospitalAPI.pdb
 C:\Users\stuar\source\repos\HospitalAPI\HospitalAPI\obj\Debug\net5.0\HospitalAPI.genruntimeconfig.cache
+C:\Users\stuar\source\repos\HospitalAPI\HospitalAPI\bin\Debug\net5.0\Testing\API Testing Postman Collection.json
